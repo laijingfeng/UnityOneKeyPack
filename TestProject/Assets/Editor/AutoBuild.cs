@@ -30,31 +30,53 @@ public class AutoBuild : Editor
     private static string m_strBuildClient = "F";
 
     /// <summary>
-    /// 解析Web参数
+    /// LOG文件目录
     /// </summary>
-    private static void AnalysisWebParameters()
+    private static string LOG_FILE_PATH = @"C:\Program Files\phpStudy\WWW\autobuild\msg_build.txt";
+
+    /// <summary>
+    /// Gets the levels.
+    /// </summary>
+    /// <returns>The levels.</returns>
+    private static string[] GetLevels()
+    {
+        return new string[] { "Assets/Client.unity" };
+    }
+
+    /// <summary>
+    /// 解析参数
+    /// </summary>
+    private static void AnalysisParameters()
     {
         foreach (string arg in System.Environment.GetCommandLineArgs())
         {
             if (arg.StartsWith("build_out_path"))
             {
                 string[] args = arg.Split('-');
+#if UNITY_IPHONE
                 if (args.Length > 1)
                 {
                     m_strExportPath = args[1];
                 }
-                if (args.Length > 2)
-                {
-                    m_strBuildAssets = arg.Split("-"[0])[2];
-                }
-                if (args.Length > 3)
-                {
-                    m_strBuildTableAndMsg = arg.Split("-"[0])[3];
-                }
-                if (args.Length > 4)
-                {
-                    m_strBuildClient = arg.Split("-"[0])[4];
-                }
+#elif UNITY_WEBPLAYER
+				if (args.Length > 1)
+				{
+					m_strExportPath = args[1];
+				}
+				if (args.Length > 2)
+				{
+					m_strBuildAssets = arg.Split("-"[0])[2];
+				}
+				if (args.Length > 3)
+				{
+					m_strBuildTableAndMsg = arg.Split("-"[0])[3];
+				}
+				if (args.Length > 4)
+				{
+					m_strBuildClient = arg.Split("-"[0])[4];
+				}
+#endif
+
                 return;
             }
         }
@@ -65,49 +87,25 @@ public class AutoBuild : Editor
     }
 
     /// <summary>
-    /// Analysises the IOS parameters.
-    /// </summary>
-    public static void AnalysisIOSParameters()
-    {
-        foreach (string arg in System.Environment.GetCommandLineArgs())
-        {
-            if (arg.StartsWith("build_out_path"))
-            {
-                string[] args = arg.Split('-');
-                if (args.Length > 1)
-                {
-                    m_strExportPath = args[1];
-                }
-                if (args.Length > 2)
-                {
-                    m_strBuildAssets = arg.Split("-"[0])[2];
-                }
-                if (args.Length > 3)
-                {
-                    m_strBuildTableAndMsg = arg.Split("-"[0])[3];
-                }
-                if (args.Length > 4)
-                {
-                    m_strBuildClient = arg.Split("-"[0])[4];
-                }
-                return;
-            }
-        }
-        m_strExportPath = "test";//use
-        m_strBuildAssets = "F";
-        m_strBuildTableAndMsg = "F";
-        m_strBuildClient = "F";
-    }
-
-    /// <summary>
     /// Builds the IO.
     /// </summary>
     public static void BuildIOS()
     {
-        AnalysisIOSParameters();
+        LOG_FILE_PATH = Application.dataPath + "/../lai.txt";
+
+        LogAppend("hello");
+
+        AnalysisParameters();
+
+        LogAppend(m_strExportPath);
 
         PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.iPhone, "AUTO_VERSION;IOS_PRE");
-        BuildPipeline.BuildPlayer(new string[] { "Assets/main.unity" }, m_strExportPath, BuildTarget.iPhone, BuildOptions.None);
+
+        LogAppend("hello2:" + PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iPhone));
+
+        BuildPipeline.BuildPlayer(GetLevels(), m_strExportPath, BuildTarget.iPhone, BuildOptions.None);//last par must be None
+
+        LogAppend("hello3");
     }
 
     /// <summary>
@@ -115,7 +113,7 @@ public class AutoBuild : Editor
     /// </summary>
     public static void BuildWeb()
     {
-        AnalysisWebParameters();
+        AnalysisParameters();
 
         if (m_strBuildTableAndMsg.Equals("T"))
         {
@@ -137,7 +135,7 @@ public class AutoBuild : Editor
 
             PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebPlayer, "AUTO_VERSION");
 
-            BuildPipeline.BuildPlayer(new string[] { "Assets/Client.unity" }, m_strExportPath, BuildTarget.WebPlayer, BuildOptions.AcceptExternalModificationsToPlayer);
+            BuildPipeline.BuildPlayer(GetLevels(), m_strExportPath, BuildTarget.WebPlayer, BuildOptions.AcceptExternalModificationsToPlayer);
 
             LogAppend("BuildClient Finish");
         }
@@ -175,9 +173,4 @@ public class AutoBuild : Editor
 
         return bRet;
     }
-
-    /// <summary>
-    /// LOG文件目录
-    /// </summary>
-    private static string LOG_FILE_PATH = @"C:\Program Files\phpStudy\WWW\autobuild\msg_build.txt";
 }

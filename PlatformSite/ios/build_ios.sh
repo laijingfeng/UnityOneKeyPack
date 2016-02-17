@@ -58,7 +58,7 @@ function familyFtpUpload() {
     local ftpCmd=""
     if [ "$ftpType" = "ios" ]; then
         ftpCmd="put $XCODE_PATH/hotblood_ios_test_${PACK_NAME}.ipa
-				put tools/hotblood_ios_test_${PACK_NAME}.plist"
+				put $SCRIPT_PATH/hotblood_ios_test_${PACK_NAME}.plist"
     elif [ "$ftpType" = "android" ]; then
         return 1
     elif [ "$ftpType" = "qr" ]; then

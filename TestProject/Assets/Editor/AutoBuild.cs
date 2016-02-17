@@ -87,25 +87,23 @@ public class AutoBuild : Editor
     }
 
     /// <summary>
-    /// Builds the IO.
+    /// Builds the IOS.
     /// </summary>
     public static void BuildIOS()
     {
-        LOG_FILE_PATH = Application.dataPath + "/../lai.txt";
+#if !UNITY_IPHONE
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTarget.iPhone);
+#endif
 
-        LogAppend("hello");
+        LOG_FILE_PATH = Application.dataPath + "/../build_log.txt";
 
         AnalysisParameters();
-
         LogAppend(m_strExportPath);
 
         PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.iPhone, "AUTO_VERSION;IOS_PRE");
-
-        LogAppend("hello2:" + PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iPhone));
-
+        PlayerSettings.productName = "test";
+        PlayerSettings.bundleIdentifier = "com.jiansheng.gdxy.test";
         BuildPipeline.BuildPlayer(GetLevels(), m_strExportPath, BuildTarget.iPhone, BuildOptions.None);//last par must be None
-
-        LogAppend("hello3");
     }
 
     /// <summary>
@@ -172,5 +170,12 @@ public class AutoBuild : Editor
         }
 
         return bRet;
+    }
+
+    [MenuItem("Assets/TestFunc")]
+    public static void TestFunc()
+    {
+        UnityEngine.Debug.LogError("test_start");
+        UnityEngine.Debug.LogError("test_end");
     }
 }

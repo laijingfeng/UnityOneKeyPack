@@ -192,8 +192,8 @@ if($can_build == true && $is_build == false){
 	
 	if($IS_IOS == true) {
 		$res = popen("./run.sh ".$upload_family." ".$upload_ftp, 'r');
-		if($res != false){
-			pclose($res);
+        if($res != false){
+			//pclose($res);
 		}else{
 			echo "Error";
 		}

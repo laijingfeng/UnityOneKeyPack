@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #---------------Config---------------#
-BUILD_SCRIPT="./ios/build_ios.sh"
+BUILD_SCRIPT="./ios/build_ios.py"
 #---------------Config---------------#
 
 #---------------Par---------------#
@@ -14,7 +14,7 @@ UPLOAD_FAMILY=$1
 UPLOAD_FTP=$2
 #---------------Par---------------#
 
-$BUILD_SCRIPT $UPLOAD_FAMILY $UPLOAD_FTP
+python $BUILD_SCRIPT $UPLOAD_FAMILY $UPLOAD_FTP
 
 
 

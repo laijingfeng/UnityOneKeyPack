@@ -11,7 +11,7 @@
 #-------------------------------------------------------------------------------
 
 
-import os
+import os, sys
 import time
 import datetime
 import smtplib
@@ -91,8 +91,15 @@ class Mailer:
         smtp.close()
 
 if __name__ == '__main__':
-    mailer = Mailer('Build App Success', 'jerrylai@123u.com', \
-                    ['jerrylai@123u.com'], '<h1>App in Mac Pro build finish!<h1>')
-    mailer.set_server_info('smtp.exmail.qq.com', 'jerrylai@123u.com', 'lai268277#')
+    if len(sys.argv) != 4:
+        exit()
+
+    par_name_list = sys.argv[1].split('#')
+    par_subject = sys.argv[2]
+    par_content = sys.argv[3]
+
+    mailer = Mailer(par_subject, 'sender_mail', \
+                    par_name_list, '<h1>' + par_content + '<h1>')
+    mailer.set_server_info('smtp.exmail.qq.com', 'send_mail', 'password')
     mailer.send_mail()
                                         

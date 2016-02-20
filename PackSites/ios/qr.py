@@ -79,6 +79,5 @@ if __name__ == "__main__":
     gen_logo(sys.argv[1], mypath)
     gen_qrcode("https://family.123u.com/sites/default/files/gameapk/testing/rexue/index.php?v=" + sys.argv[1], mypath)
     
-    print "Check " + mypath + "qr.png"
 
     

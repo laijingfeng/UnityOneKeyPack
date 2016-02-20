@@ -39,7 +39,7 @@ if(!isset($_REQUEST['v'])) {
 }
 
 if (!$is_wechat && $is_apple) {
-    header("Location: itms-services://?action=download-manifest&url=https://family.123u.com/sites/default/files/gameapk/testing/rexue/hotblood_ios_test_".$_REQUEST['v'].".plist");
+    header("Location: itms-services://?action=download-manifest&url=https://download_address/testing/rexue/hotblood_ios_test_".$_REQUEST['v'].".plist");
     exit;
 }
 if ($is_wechat == false && strpos($_SERVER['HTTP_USER_AGENT'], "Android") !== false) {

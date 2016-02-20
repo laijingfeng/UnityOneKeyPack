@@ -11,7 +11,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>{SITE}/actgame_ios_{CHANNEL}_{VERSION}.ipa</string>
+					<string>https://family.123u.com/sites/default/files/gameapk/testing/rexue/hotblood_ios_test_{PACK_NAME}.ipa</string>
 				</dict>
 			</array>
 			<key>metadata</key>
@@ -23,7 +23,7 @@
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
-				<string>HotBlood</string>
+				<string>热血手游</string>
 			</dict>
 		</dict>
 	</array>

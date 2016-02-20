@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>UnityOneKeyPack by laijingfeng</title>
+    <title>Unity工程一键打包 by laijingfeng</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-dark.css">
@@ -17,8 +17,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>UnityOneKeyPack</h1>
-        <p>UnityOneKeyPack</p>
+        <h1>Unity工程一键打包</h1>
+        <p>Unity工程一键打包</p>
         <p class="view"><a href="https://github.com/laijingfeng/UnityOneKeyPack">View the Project on GitHub <small>laijingfeng/UnityOneKeyPack</small></a></p>
         <ul>
           <li><a href="https://github.com/laijingfeng/UnityOneKeyPack/zipball/master">Download <strong>ZIP File</strong></a></li>
@@ -28,7 +28,83 @@
       </header>
       <section>
         <h2>
-<a id="laijingfeng" class="anchor" href="#laijingfeng" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>laijingfeng</h2>
+<a id="说明" class="anchor" href="#%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>说明</h2>
+
+<p>一键完成以下步骤：</p>
+
+<ul>
+<li>登录打包web网站，选择打包参数，点击打包，后续步骤自动完成 <strong>完善中</strong>
+</li>
+<li>更新SVN <strong>待加入</strong>
+</li>
+<li>启动Unity工程进行设置、打资源、编译工程 <strong>部分变量还需进一步配置化</strong>
+</li>
+<li>得到XCode工程</li>
+<li>得到ipa</li>
+<li>生成plist文件、二维码</li>
+<li>相关文件（.ipa/qr.png/.plist）上传到指定位置</li>
+<li>邮件提醒打包完成（可以进一步借助邮箱的功能，提醒到QQ/微信/短信）</li>
+<li>登录下载web网站</li>
+<li>扫描二维码下载最新的包</li>
+</ul>
+
+<h2>
+<a id="工程说明" class="anchor" href="#%E5%B7%A5%E7%A8%8B%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>工程说明</h2>
+
+<ul>
+<li>BuildScriptForWeb 一些打包WebPlayer版本的脚本，待整理</li>
+<li>PackSites 打包web网站
+
+<ul>
+<li>ios ios打包的所有脚本
+
+<ul>
+<li>send_mail.py <code>sender_mail</code>和<code>password</code>补充完整，发件人邮箱和密码 </li>
+<li>build_config.py 配置信息</li>
+<li>UploadTool.sh 上传，需要填充ftp_address、family_address\family_user\family_password</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DownloadSite 下载web网站，打好的包上传到这个地方
+
+<ul>
+<li>index.php 需要填充下载网站地址download_address</li>
+</ul>
+</li>
+<li>TestProject 一个测试工程
+
+<ul>
+<li>注意做好切换平台</li>
+<li>XUPorter 用来设置XCode工程的打包证书
+
+<ul>
+<li>XCodePostProcess.cs 需要把<code>iPhone Distribution: xxx</code>补充完整</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>注意：</p>
+
+<ul>
+<li>Unity需要关闭</li>
+</ul>
+
+<h2>
+<a id="我的环境" class="anchor" href="#%E6%88%91%E7%9A%84%E7%8E%AF%E5%A2%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>我的环境</h2>
+
+<ul>
+<li>Unity版本
+
+<ul>
+<li>IOS 4.6.5p4</li>
+<li>WebPlayer 4.6.0f3</li>
+</ul>
+</li>
+<li>Xcode版本 6.2</li>
+</ul>
       </section>
     </div>
     <footer>

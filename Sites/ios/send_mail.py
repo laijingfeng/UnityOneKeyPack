@@ -93,7 +93,7 @@ if __name__ == '__main__':
     if len(sys.argv) != 4:
         exit()
 
-    par_name_list = sys.argv[1].split('#')
+    par_name_list = sys.argv[1].split(';')
     par_subject = sys.argv[2]
     par_content = sys.argv[3]
 

@@ -1,0 +1,4 @@
+是否上传family=_jy_par_upload_family=F
+是否上传ftp=_jy_par_upload_ftp=F
+打完包是否发送邮件=_jy_par_send_mail=F
+打完包是否清理工程=_jy_par_do_clean=F

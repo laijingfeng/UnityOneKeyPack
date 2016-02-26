@@ -44,18 +44,15 @@
 <a id="工程说明" class="anchor" href="#%E5%B7%A5%E7%A8%8B%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>工程说明</h2>
 
 <ul>
-<li>BuildScriptForWeb 一些打包WebPlayer版本的脚本，待整理</li>
-<li>PackSites 打包web网站
+<li>Sites 打包站
 
 <ul>
-<li>ios ios打包的所有脚本
-
-<ul>
+<li>ios ios打包脚本，run.py是启动脚本，必要时可以根据需要手动执行</li>
 <li>send_mail.py <code>sender_mail</code>和<code>password</code>补充完整，发件人邮箱和密码 </li>
 <li>build_config.py 配置信息</li>
 <li>UploadTool.sh 上传，需要填充<code>ftp_address</code>、<code>family_address</code>、<code>family_user</code>、<code>family_password</code>
 </li>
-</ul>
+<li>qr.py 二维码模块，填充<code>download_address</code>
 </li>
 </ul>
 </li>
@@ -66,6 +63,7 @@
 </li>
 </ul>
 </li>
+<li>BuildScriptForWeb 一些打包WebPlayer版本的脚本，待整理</li>
 <li>TestProject 一个测试工程
 
 <ul>
